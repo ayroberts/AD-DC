@@ -20,23 +20,23 @@ Create the following Organizational Units
 
 - [Domain] Computers - client / user machines  
 
--- Conference - publicly accessible kiosks and presentation devices  
+  - Conference - publicly accessible kiosks and presentation devices  
 
--- Secure - machines for HR and finance users  
+  - Secure - machines for HR and finance users  
 
--- Workstations - machines for devs and engineers  
+  - Workstations - machines for devs and engineers  
 
 - [Domain] Servers - servers for org (data shares, repo hosts, HPCs)  
 
 - [Domain] Users  
 
--- Finance - can log on to Secure computers, managed by hr_finance_admins group  
+  - Finance - can log on to Secure computers, managed by hr_finance_admins group  
 
--- HR - can log on to Secure computers, managed by hr_finance_admins group  
+  - HR - can log on to Secure computers, managed by hr_finance_admins group  
 
--- Engineers - can log on to Workstations, managed by dev_eng_admins  
+  - Engineers - can log on to Workstations, managed by dev_eng_admins  
 
--- Developers - can log on to Workstations, managed by dev_eng_admins  
+  - Developers - can log on to Workstations, managed by dev_eng_admins  
   
 
 New-ADOrganizationalUnit -Name Conference -Path "OU=[Domain] Computers,DC=ad,DC=hyrule,DC=com" -Description "Kiosks/Presentations" -PassThru  
@@ -141,31 +141,31 @@ Create the following Security Groups and define where they should be within the 
 
 - project_repos_RW - users who have Read / Write access to project repositories  
 
--- This group should be placed within the OU that contains the project repositories that the users need access to  
+  - This group should be placed within the OU that contains the project repositories that the users need access to  
 
--- finance_RW - users who have Read / Write access to finance share  
+  - finance_RW - users who have Read / Write access to finance share  
 
 - Should be placed within the OU that contains the finance share that the users need access to  
 
--- onboarding_R - users who have Read access to onboarding documents  
+  - onboarding_R - users who have Read access to onboarding documents  
 
--- Should be placed within the OU that contains the Onboarding folder.  
+  - Should be placed within the OU that contains the Onboarding folder.  
 
 - server_access - users who can log on to Servers  
 
--- This group should be placed within the OU that contains the servers  
+  - This group should be placed within the OU that contains the servers  
 
 - dev_eng_admins - IT admins to handle Developer and Engineer accounts  
 
--- Should be placed within the OU that contains the Developer and Engineer user accounts
+  - Should be placed within the OU that contains the Developer and Engineer user accounts
 
 - hr_finance_admins - IT admins to handle HR and finance accounts  
 
--- Should be placed within the OU that contains the HR and finance user accounts  
+  - Should be placed within the OU that contains the HR and finance user accounts  
 
 - remote_workstation - Group of workstations that allow RDP connections  
 
--- Should be placed within the OU that contains the workstations that allow RDP connections  
+  - Should be placed within the OU that contains the workstations that allow RDP connections  
   
 
 ## OUs & GPOs  
@@ -175,39 +175,39 @@ Create the following Security Groups and define where they should be within the 
 
 - Lock out Workstations after 15 minutes of inactivity.  
 
--- https://activedirectorypro.com/group-policy-lock-screen/  
+  - https://activedirectorypro.com/group-policy-lock-screen/  
 
--- Create a new GPO by right-clicking on the Group Policy Objects folder. Configure within the GPO.  
+  - Create a new GPO by right-clicking on the Group Policy Objects folder. Configure within the GPO.  
 
 - Prevent execution of programs on computers in Secure OU  
 
--- https://rdr-it.com/en/gpo-block-programs-and-prevent-software-installation-software-restriction/  
+  - https://rdr-it.com/en/gpo-block-programs-and-prevent-software-installation-software-restriction/  
 
--- Under the "Security Levels" folder, right-click on "Disallowed" and select "New Path Rule  
+  - Under the "Security Levels" folder, right-click on "Disallowed" and select "New Path Rule  
 
 - Disable Guest account login to computers in Secure OU  
 
--- https://4sysops.com/archives/deny-and-allow-workstation-logons-with-group-policy/  
+  - https://4sysops.com/archives/deny-and-allow-workstation-logons-with-group-policy/  
 
--- Locate the "Accounts: Guest account status" policy, and set it to "Disabled"  
+  - Locate the "Accounts: Guest account status" policy, and set it to "Disabled"  
 
 - Allow server_access to sign on to Servers  
 
--- https://www.anyviewer.com/how-to/allow-remote-access-to-server-2578.html  
+  - https://www.anyviewer.com/how-to/allow-remote-access-to-server-2578.html  
 
--- Locate the "Allow log on through Remote Desktop Services" policy, and add the "server_access" group to the policy.  
+  - Locate the "Allow log on through Remote Desktop Services" policy, and add the "server_access" group to the policy.  
 
 - Set Desktop background for Conference computers to the company logo.  
 
--- https://technoresult.com/how-to-change-desktop-background-set-by-your-organization/  
+  - https://technoresult.com/how-to-change-desktop-background-set-by-your-organization/  
 
--- Enable the "Desktop Wallpaper" policy, and specify the path to the company logo image file  
+  - Enable the "Desktop Wallpaper" policy, and specify the path to the company logo image file  
 
 - Allow users in remote_workstation group to RDP to Workstations  
 
--- https://techdirectarchive.com/2021/10/07/allow-rdp-access-for-non-administrators-add-user-to-remote-desktop-users-group-in-active-directory/  
+  - https://techdirectarchive.com/2021/10/07/allow-rdp-access-for-non-administrators-add-user-to-remote-desktop-users-group-in-active-directory/  
 
--- Locate the "Allow log on through Remote Desktop Services" policy, and add the "remote_workstation" group to the policy.  
+  - Locate the "Allow log on through Remote Desktop Services" policy, and add the "remote_workstation" group to the policy.  
 
 ## Managing OUs  
 
