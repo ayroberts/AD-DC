@@ -122,8 +122,6 @@ Write the steps needed to join the Windows Server to the Domain:
 
 
 ## Creating Groups  
-
-Create the following Security Groups and define where they should be within the OUs based on their roles:  
   
 
 1. Open the Active Directory Users and Computers management console.  
