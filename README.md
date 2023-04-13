@@ -60,13 +60,13 @@ New-ADOrganizationalUnit -Name Developers -Path "OU=[Domain] Users,DC=ad,DC=hyru
 Using a PowerShell script, join the users in users.csv to your domain.  
   
 
-## Set the domain name and OU  
+### Set the domain name and OU  
 
 $domain = "ad.hyrule.com"  
 
 $ou = "OU=[Domain] Users,DC=ad,DC=hyrule,DC=com"  
 
-# Import the CSV file and loop through each user  
+### Import the CSV file and loop  
 
 Import-Csv -Path $csvPath | foreach {  
 
